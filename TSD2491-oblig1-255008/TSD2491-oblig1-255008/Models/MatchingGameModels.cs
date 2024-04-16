@@ -23,18 +23,65 @@ namespace TSD2491_oblig1_255008
             "🐭", "🐭",
         };
 
-        static Random random = new Random();
-        public List<string> animals = animalEmoji;
-
-        public MatchingGameModels()
+        static List<string> sweetEmoji = new List<string>()
         {
-            SetUpGame();
-        }
+            "🍦","🍦",
+            "🍡","🍡",
+            "🍪","🍪",
+            "🍬","🍬",
+            "🎂","🎂",
+            "🍫","🍫",
+            "🍭","🍭",
+            "📍","📍",
 
+        };
+
+
+
+
+        static List<string> ballEmoji = new List<string>()
+        {
+            "⚽","⚽",
+            "⚾","⚾",
+            "🥎","🥎",
+            "🏀","🏀",
+            "🏐","🏐",
+            "🏈","🏈",
+            "🏉","🏉",
+            "🎱","🎱",
+            
+        };
+        public MatchingGameModels()
+                {
+                    SetUpGame();
+                }
+
+
+        static Random random = new Random();
+        public List<string> shuffledEmoji = pickRandomEmoji();
+
+        static List<string> pickRandomEmoji()
+        {
+            int randomIndex = random.Next(0, 3);
+
+            switch (randomIndex)
+            {
+                case 0:
+                    return ballEmoji = ballEmoji.OrderBy(items => random.Next()).ToList(); ;
+                case 1:
+                    return animalEmoji = animalEmoji.OrderBy(items => random.Next()).ToList(); ;
+                case 2:
+                    return sweetEmoji = sweetEmoji.OrderBy(items => random.Next()).ToList(); ;
+              
+              
+                default:
+                    throw new Exception("Invalid random index");
+            }
+        }
         private void SetUpGame()
         {
             Random random = new Random();
-            animals = animalEmoji.OrderBy(items => random.Next()).ToList();
+            shuffledEmoji = pickRandomEmoji();
 
             matchesFound = 0;
         }
@@ -56,7 +103,7 @@ namespace TSD2491_oblig1_255008
                 // Match found! Reset for the next pair.
                 lastAnimalFound = string.Empty;
 
-                animals = animals
+                shuffledEmoji = shuffledEmoji
                     .Select(a => a.Replace(animal, string.Empty))
                     .ToList();
                 matchesFound++;

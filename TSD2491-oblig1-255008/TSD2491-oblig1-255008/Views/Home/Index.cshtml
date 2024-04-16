@@ -19,14 +19,14 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">TSD2491_oblig1_255008</h1>
+    <h1 class="display-4">TSD2491-Oblig1</h1>
 </div>
 
 <div class="container">
     <div class="row">
-        @for (var animalNumber = 0; animalNumber < Model.animals.Count; animalNumber++)
+        @for (var animalNumber = 0; animalNumber < Model.shuffledEmoji.Count; animalNumber++)
         {
-            var animal = Model.animals[animalNumber];
+            var animal = Model.shuffledEmoji[animalNumber];
             var uniqueDescription = $"Button #{animalNumber}";
 
             <div class="col-3">
