@@ -43,6 +43,32 @@ namespace TSD2491_oblig1_255008
         string lastDescription = string.Empty;
 
 
-      
+        public void ButtonClick(string animal, string animalDescription)
+        {
+            if (lastAnimalFound == string.Empty)
+            {
+                // First selection of the pari.  Remember it
+                lastAnimalFound = animal;
+                lastDescription = animalDescription;
+            }
+            else if ((lastAnimalFound == animal) && (animalDescription != lastDescription))
+            {
+                // Match found! Reset for the next pair.
+                lastAnimalFound = string.Empty;
+
+                animals = animals
+                    .Select(a => a.Replace(animal, string.Empty))
+                    .ToList();
+                matchesFound++;
+                if (matchesFound == 8)
+                {
+                    SetUpGame();
+                }
+            }
+            else
+            {
+                lastAnimalFound = string.Empty;
+            }
+        }
     }
 }
