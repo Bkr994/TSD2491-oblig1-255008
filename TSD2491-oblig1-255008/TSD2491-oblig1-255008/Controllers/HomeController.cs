@@ -1,32 +1,24 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 using TSD2491_oblig1_255008.Models;
+using System.Diagnostics;
+using TSD2491_oblig1_255008;
 
-namespace TSD2491_oblig1_255008.Controllers
+namespace TSD2491_oblig1_255008
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly static MatchingGameModels _matchingGameModels = new MatchingGameModels();
 
-        public HomeController(ILogger<HomeController> logger)
+
+        public HomeController()
         {
-            _logger = logger;
+
         }
 
         public IActionResult Index()
         {
-            return View();
+            return View(_matchingGameModels);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }
