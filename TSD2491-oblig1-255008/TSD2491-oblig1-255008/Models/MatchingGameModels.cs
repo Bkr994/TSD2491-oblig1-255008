@@ -11,6 +11,8 @@ namespace TSD2491_oblig1_255008
     {
         public int matchesFound = 0;
 
+        public string GameStatus { get; set; }
+
         static List<string> animalEmoji = new List<string>()
         {
             "🐶", "🐶",
@@ -92,6 +94,10 @@ namespace TSD2491_oblig1_255008
 
         public void ButtonClick(string animal, string animalDescription)
         {
+            if(matchesFound == 0)
+            {
+                GameStatus = "Game Running";
+            }
             if (lastAnimalFound == string.Empty)
             {
                 // First selection of the pari.  Remember it
@@ -109,6 +115,7 @@ namespace TSD2491_oblig1_255008
                 matchesFound++;
                 if (matchesFound == 8)
                 {
+                    GameStatus = "Game Finished";
                     SetUpGame();
                 }
             }
