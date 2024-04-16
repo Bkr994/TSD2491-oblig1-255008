@@ -4,14 +4,19 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Timers;
+using System.ComponentModel;
+using TSD2491_oblig1_255008;
+using TSD2491_oblig1_255008.Models;
 
 namespace TSD2491_oblig1_255008
 {
     public class MatchingGameModels
     {
         public int matchesFound = 0;
+        public int GamesPlayed = 0;
 
         public string GameStatus { get; set; }
+        public User CurrentUser { get; set; }
 
         static List<string> animalEmoji = new List<string>()
         {
@@ -80,7 +85,7 @@ namespace TSD2491_oblig1_255008
                     throw new Exception("Invalid random index");
             }
         }
-        private void SetUpGame()
+        public void SetUpGame()
         {
             Random random = new Random();
             shuffledEmoji = pickRandomEmoji();
